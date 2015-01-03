@@ -1,0 +1,47 @@
+#!/usr/bin/ruby -w
+# encoding: UTF-8
+
+require 'cgi'
+require 'open3'
+
+# Create temporary file (don't use this execution style if user input is involved)
+tmpfilename = `mktemp -t add_input`.chop
+tmpfile = File.open(tmpfilename, "w+")
+
+File.open(tmpfilename, "w+") do |tmpfile|
+  # First line contains subject
+  tmpfile.puts(ENV['MM_SUBJECT'])
+
+  # Second line contains message URL
+  tmpfile.puts("message://" + CGI::escape(ENV['MM_MESSAGE_ID']))
+
+  detect_path = ENV['MM_SUPPORT_PATH'] + "/bin/detect"
+  canonical = $stdin.read
+  range_string = ENV['MM_SELECTED_RANGE']
+  selection = ""
+  if range_string.nil?
+    stdin, stdout, stderr = Open3.popen3(detect_path)
+    stdin.puts canonical
+    stdin.close
+  
+    # Third line contains date (or is empty)
+    tmpfile.puts(stdout.read)
+    stdout.close
+    stderr.close
+  else
+    offset1,offset2 = range_string.match(/(\d+):(\d+)/).captures
+    range = Integer(offset1)..Integer(offset2)
+    selection = canonical[range]
+    selection.gsub!("\n", ' ')
+    tmpfile.puts(selection)
+  end
+
+  # Output note
+  # tmpfile.puts canonical
+end
+
+# Use AppleScript to communicate with the application
+system(ENV['MM_BUNDLE_SUPPORT'] + "/bin/create_event", tmpfilename)
+
+# Cleanup
+File.unlink(tmpfilename)

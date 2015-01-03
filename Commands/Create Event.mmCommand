@@ -1,0 +1,8 @@
+{
+	name          = 'Create Event...';
+	input         = 'canonical';
+	environment   = 'MM_SUBJECT=${subject.prefix:+${subject.prefix} }${subject.blob:+[${subject.blob}] }${subject.body}\nMM_MESSAGE_ID=${message-id.split}\n';
+	command       = '#!/bin/bash\n"${MM_BUNDLE_SUPPORT}/bin/add"';
+	keyEquivalent = "^C";
+	uuid          = '4A1050D0-5F81-11E3-949A-0800200C9A66';
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>contactEmailRot13</key>
+	<string>gbefgra.tehfg@tznvy.pbz</string>
+	<key>contactName</key>
+	<string>Torsten 'Teggy' Grust</string>
+	<key>description</key>
+	<string>Integration with calendar manager Fantastical.</string>
+	<key>name</key>
+	<string>Fantastical</string>
+	<key>uuid</key>
+	<string>B2877040-5F80-11E3-949A-0800200C9A66</string>
+</dict>
+</plist>

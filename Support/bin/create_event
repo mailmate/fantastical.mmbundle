@@ -1,0 +1,16 @@
+#!/usr/bin/osascript
+
+-- Create a Fantastical calendar entry
+
+on run argv
+	set theFilename to item 1 of argv
+	set theLines to every paragraph of (do shell script ("cat " & theFilename))
+	set theSubject to item 1 of theLines
+	set theMessage to item 2 of theLines
+	set theSelection to item 3 of theLines
+
+	tell application "Fantastical"
+		activate
+		parse sentence (theSubject & " " & theMessage & " on " & theSelection)
+	end tell
+end run
