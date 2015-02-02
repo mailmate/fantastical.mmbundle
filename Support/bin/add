@@ -6,7 +6,6 @@ require 'open3'
 
 # Create temporary file (don't use this execution style if user input is involved)
 tmpfilename = `mktemp -t add_input`.chop
-tmpfile = File.open(tmpfilename, "w+")
 
 File.open(tmpfilename, "w+") do |tmpfile|
   # First line contains subject
