@@ -11,13 +11,15 @@ on run argv
 
 	try
 		tell application "Finder" to get application file id "com.flexibits.fantastical2.mac"
-		set appName to "Fantastical 2"
+		tell application "Fantastical 2"
+			activate
+			parse sentence (theSubject & " " & theMessage & " on " & theSelection)
+		end tell
 	on error
-		set appName to "Fantastical"
+		tell application "Fantastical"
+			activate
+			parse sentence (theSubject & " " & theMessage & " on " & theSelection)
+		end tell
 	end try
   
-	tell application appName
-		activate
-		parse sentence (theSubject & " " & theMessage & " on " & theSelection)
-	end tell
 end run
