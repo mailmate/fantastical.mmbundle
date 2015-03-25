@@ -9,12 +9,12 @@ on run argv
 	set theMessage to item 2 of theLines
 	set theSelection to item 3 of theLines
 
-  try
-    tell application "Finder" to get application file id "com.flexibits.fantastical2.mac"
-    set appName to "Fantastical 2"
-  on error
-    set appName to "Fantastical"
-  end try
+	try
+		tell application "Finder" to get application file id "com.flexibits.fantastical2.mac"
+		set appName to "Fantastical 2"
+	on error
+		set appName to "Fantastical"
+	end try
   
 	tell application appName
 		activate
