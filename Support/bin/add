@@ -12,7 +12,7 @@ File.open(tmpfilename, "w+") do |tmpfile|
   tmpfile.puts(ENV['MM_SUBJECT'])
 
   # Second line contains message URL
-  tmpfile.puts("message://" + CGI::escape(ENV['MM_MESSAGE_ID']))
+  tmpfile.puts("message://" + CGI::escape("<" + ENV['MM_MESSAGE_ID'] + ">"))
 
   detect_path = ENV['MM_SUPPORT_PATH'] + "/bin/detect"
   canonical = $stdin.read
