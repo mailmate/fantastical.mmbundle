@@ -9,17 +9,9 @@ on run argv
 	set theMessage to item 2 of theLines
 	set theSelection to item 3 of theLines
 
-	try
-		tell application "Finder" to get application file id "com.flexibits.fantastical2.mac"
-		tell application "Fantastical 2"
-			activate
-			parse sentence (theSubject & " " & theMessage & " on " & theSelection)
-		end tell
-	on error
-		tell application "Fantastical"
-			activate
-			parse sentence (theSubject & " " & theMessage & " on " & theSelection)
-		end tell
-	end try
+	tell application id "com.flexibits.fantastical2.mac"
+		activate
+		parse sentence (theSubject & " " & theMessage & " on " & theSelection)
+	end tell
   
 end run
