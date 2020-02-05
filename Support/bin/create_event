@@ -11,7 +11,7 @@ on run argv
 
 	tell application id "com.flexibits.fantastical2.mac"
 		activate
-		parse sentence (theSubject & " " & theMessage & " on " & theSelection)
+		parse sentence (theSubject & " on " & theSelection & " " & theMessage)
 	end tell
   
 end run
