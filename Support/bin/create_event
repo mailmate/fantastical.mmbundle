@@ -9,9 +9,24 @@ on run argv
 	set theMessage to item 2 of theLines
 	set theSelection to item 3 of theLines
 
+<<<<<<< HEAD
 	tell application id "com.flexibits.fantastical2.mac"
 		activate
 		parse sentence (theSubject & " on " & theSelection & " " & theMessage)
 	end tell
+=======
+	try
+		tell application "Finder" to get application file id "com.flexibits.fantastical2.mac"
+		tell application "Fantastical 2"
+			activate
+			parse sentence (theSubject & " " & theMessage & " on " & theSelection)
+		end tell
+	on error
+		tell application "Fantastical"
+			activate
+			parse sentence (theSubject & " " & theMessage & " on " & theSelection)
+		end tell
+	end try
+>>>>>>> parent of 1d1a82a... Changed: Simplified script to always use the application id. This should work with both version 2 and 3 of Fantastical.
   
 end run
